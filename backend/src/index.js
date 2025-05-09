@@ -1,3 +1,4 @@
+
 const express = require('express');
 const path = require('path');
 const setupApi = require('./api');
@@ -11,7 +12,6 @@ setupApi(app);
 
 // Serve static frontend in production
 if (process.env.NODE_ENV === 'production') {
-  console.log('Serving static files from frontend/dist');
   app.use(express.static(path.join(__dirname, '../../frontend/dist')));
   
   app.get('*', (req, res) => {
@@ -19,11 +19,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Get port from environment or use default
-const PORT = process.env.PORT || config.port;
-
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(config.port, () => {
+  console.log(`Server running on port ${config.port}`);
   console.log('Schema Evolution Monitor is running!');
 });

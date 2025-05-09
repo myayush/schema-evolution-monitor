@@ -1,3 +1,4 @@
+
 {
   "name": "schema-evolution-monitor",
   "version": "1.0.0",
@@ -5,13 +6,11 @@
   "main": "backend/src/index.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-  "server": "nodemon backend/src/index.js",
-  "client": "cd frontend && vite",
-  "build": "cd frontend && npm run build",
-  "postinstall": "cd frontend && npm install",
-  "start:prod": "node backend/src/index.js",
-  "test": "jest",
-  "init-db": "node backend/src/db/init.js"
+    "server": "nodemon backend/src/index.js",
+    "client": "cd frontend && vite",
+    "build": "cd frontend && vite build",
+    "test": "jest",
+    "init-db": "node backend/src/db/init.js"
   },
   "keywords": [
     "schema",
