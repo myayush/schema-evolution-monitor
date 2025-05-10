@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+// Use relative path instead of absolute localhost URL
+const API_URL = '/api';
 
 const api = {
   // Schemas
@@ -20,7 +21,7 @@ const api = {
       return response.data;
     } catch (error) {
       console.error('Error creating schema:', error);
-      throw error;
+      throw error.response?.data?.error || error.message || 'Failed to create schema';
     }
   },
   
@@ -63,17 +64,6 @@ const api = {
     } catch (error) {
       console.error('Error creating dependency:', error);
       throw error;
-    }
-  },
-
-  // Update the createSchema function in api.js
-async createSchema(schemaData) {
-    try {
-      const response = await axios.post(`${API_URL}/schemas`, schemaData);
-      return response.data;
-    } catch (error) {
-      console.error('Error creating schema:', error);
-      throw error.response?.data?.error || error.message || 'Failed to create schema';
     }
   }
 };

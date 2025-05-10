@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: schema-evolution-monitor
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: node backend/src/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_PATH
+        value: /opt/render/project/data/schema-monitor.db

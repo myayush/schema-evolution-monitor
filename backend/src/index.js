@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const setupApi = require('./api');
@@ -20,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Start the server
-app.listen(config.port, () => {
+app.listen(config.port, '0.0.0.0', () => {
   console.log(`Server running on port ${config.port}`);
   console.log('Schema Evolution Monitor is running!');
 });
