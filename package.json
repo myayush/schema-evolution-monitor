@@ -24,7 +24,7 @@
     "bootstrap": "^5.3.6",
     "cors": "^2.8.5",
     "d3": "^7.9.0",
-    "express": "^5.1.0",
+    "express": "^4.19.2",
     "pipelinepulse": "^1.0.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
