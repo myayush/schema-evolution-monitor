@@ -6,6 +6,9 @@ const config = require('../config');
 // Create Express app
 const app = express();
 
+// Initialize database (this will also seed data)
+require('./db/init');
+
 // Setup API routes
 setupApi(app);
 
