@@ -245,7 +245,7 @@ function seedSampleData() {
       'notification-service'
     );
     
-    // Create impressive deployments with various statuses
+    
     const deploymentStmt = db.prepare(`
       INSERT INTO deployments (schema_id, environment, status) 
       VALUES (?, ?, ?)
@@ -263,7 +263,7 @@ function seedSampleData() {
     
     // Development deployments
     deploymentStmt.run(userSchema3.lastInsertRowid, 'dev', 'SUCCESS');
-    deploymentStmt.run(notificationSchema.lastInsertRowid, 'dev', 'PENDING');
+    deploymentStmt.run(notificationSchema.lastInsertRowid, 'dev',  'SUCCESS');
     
     // Failed deployment (to show error handling)
     deploymentStmt.run(userSchema3.lastInsertRowid, 'prod', 'FAILED');
