@@ -1,76 +1,109 @@
-chema Evolution Monitor
+# Schema Evolution Monitor
+
 A web application that tracks schema changes across microservices and prevents breaking changes from reaching production.
-🚀 Live Demo
-View Live Demo
-🎯 Problem Solved
-In microservice architectures, services communicate through API contracts (schemas). When these schemas change, it can break dependent services. This tool provides:
 
-Real-time tracking of schema changes across services
-Automatic detection of breaking changes
-Visual dependency mapping between services
-Deployment monitoring with status tracking
+🚀 **Live Demo:** View Live Demo at 
+https://schema-evolution-monitor-14.onrender.com
 
-🛠️ Tech Stack
+---
 
-Frontend: React, D3.js
-Backend: Node.js, Express
-Database: SQLite
-Integrations: StreamSynth (data processing), PipelinePulse (deployment monitoring)
-Deployment: Render
+##  Problem Solved
 
-✨ Key Features
-Schema Management
+In microservice architectures, services communicate through API contracts (schemas). When these change, they can break dependent services.
 
-Register and version schemas
-Detect breaking vs non-breaking changes
-Track schema evolution history
+This tool provides:
 
-Deployment Tracking
+* Real-time tracking of schema changes across services
+* Automatic detection of breaking changes
+* Visual dependency mapping between services
+* Deployment monitoring with status tracking
 
-Monitor deployments across environments (dev, staging, prod)
-Track deployment status (success, failed, monitoring)
-Prevent breaking changes from reaching production
+---
 
-Dependency Visualization
+##  Tech Stack
 
-Interactive service dependency graph
-Impact analysis for schema changes
-Visual representation of microservice architecture
+* **Frontend:** React, D3.js
+* **Backend:** Node.js, Express
+* **Database:** SQLite
+* **Integrations:**
 
-🏗️ Architecture
+  * StreamSynth (data processing)
+  * PipelinePulse (deployment monitoring)
+* **Deployment:** Render
+
+---
+
+##  Key Features
+
+###  Schema Management
+
+* Register and version schemas
+* Detect breaking vs non-breaking changes
+* Track schema evolution history
+
+###  Deployment Tracking
+
+* Monitor deployments across environments (dev, staging, prod)
+* Track deployment status (success, failed, monitoring)
+* Prevent breaking changes from reaching production
+
+###  Dependency Visualization
+
+* Interactive service dependency graph
+* Impact analysis for schema changes
+* Visual representation of microservice architecture
+
+---
+
+##  Architecture
+
+```
 Frontend (React) → API (Express) → SQLite Database
-                                 ↓
-                        StreamSynth (Data Processing)
-                        PipelinePulse (Deployment Monitoring)
-🚦 Getting Started
+                         ↓
+        StreamSynth (Data Processing)
+        PipelinePulse (Deployment Monitoring)
+```
 
-Clone the repository
+---
 
-bashgit clone https://github.com/myayush/schema-evolution-monitor.git
+##  Getting Started
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/myayush/schema-evolution-monitor.git
 cd schema-evolution-monitor
+```
 
-Install dependencies
+2. **Install Dependencies**
 
-bashnpm install
+```bash
+npm install
+```
 
-Start the application
+3. **Start the Application**
 
-bashnpm start
+```bash
+npm start
+```
 
 Access at http://localhost:5173
 
-🧪 Try It Yourself - Step by Step Demo
-Follow these steps to see the core features in action:
-Step 1: Register Your First Schema
+---
+
+## 🧪 Try It Yourself - Step by Step Demo
+
+### Step 1: Register Your First Schema
 
 In the "Register New Schema" form, enter:
 
-Schema Name: ProductSchema
-Version: 1.0.0
-Service: product-service
-Schema Content:
+* **Schema Name:** ProductSchema
+* **Version:** 1.0.0
+* **Service:** product-service
+* **Schema Content:**
 
-json{
+```json
+{
   "type": "object",
   "properties": {
     "productId": { "type": "string" },
@@ -80,20 +113,16 @@ json{
   },
   "required": ["productId", "name", "price"]
 }
+```
 
-Click "Register Schema"
+Click "Register Schema" → Schema appears in the "Recent Schemas" section.
 
-✅ What you'll see: The schema appears in the "Recent Schemas" section, and the schema count increases.
-Step 2: Add a Non-Breaking Change
+### Step 2: Add a Non-Breaking Change
 
 Register version 1.1.0 with an optional field:
 
-Schema Name: ProductSchema
-Version: 1.1.0
-Service: product-service
-Schema Content:
-
-json{
+```json
+{
   "type": "object",
   "properties": {
     "productId": { "type": "string" },
@@ -104,20 +133,16 @@ json{
   },
   "required": ["productId", "name", "price"]
 }
+```
 
-Click "Register Schema"
+Expected: **"Compatible Changes Only"** message.
 
-✅ What you'll see: A success message with "Compatible Changes Only" - adding optional fields is safe.
-Step 3: Create a Breaking Change
+### Step 3: Create a Breaking Change
 
 Register version 2.0.0 with breaking changes:
 
-Schema Name: ProductSchema
-Version: 2.0.0
-Service: product-service
-Schema Content:
-
-json{
+```json
+{
   "type": "object",
   "properties": {
     "productId": { "type": "string" },
@@ -128,70 +153,58 @@ json{
   },
   "required": ["productId", "name", "cost", "category"]
 }
+```
 
-Click "Register Schema"
+Expected: **"Breaking Changes Detected!"**
 
-✅ What you'll see:
+* `FIELD_REMOVED`: Field `price` was removed
+* `REQUIRED_ADDED`: Field `category` is now required
 
-Red alert: "Breaking Changes Detected!"
-Detailed analysis showing:
-
-FIELD_REMOVED: Field 'price' was removed
-REQUIRED_ADDED: Field 'category' is now required
-
-
-
-This demonstrates the core value: The system caught dangerous changes before they could break other services!
-Step 4: Deploy a Schema
+### Step 4: Deploy a Schema
 
 In the "Deploy Schema" section:
 
-Select: ProductSchema v1.0.0 (product-service)
-Environment: dev
+* Select: ProductSchema v1.0.0 (product-service)
+* Environment: dev
+* Click "Create Deployment"
 
+Expected: Deployment appears with **PENDING** → changes to **SUCCESS** after a few seconds.
 
-Click "Create Deployment"
-
-✅ What you'll see:
-
-Success message
-Deployment appears in "Recent Deployments" with PENDING status
-After 3 seconds, refresh the page - status changes to SUCCESS
-
-Step 5: Create Service Dependencies
+### Step 5: Create Service Dependencies
 
 In the "Register Dependency" form:
 
-Producer Service: product-service
-Consumer Service: search-service
-Schema Name: ProductSchema
+* **Producer Service:** product-service
+* **Consumer Service:** search-service
+* **Schema Name:** ProductSchema
+* Click "Register Dependency"
 
+Expected: Dependency graph updates showing new connection.
 
-Click "Register Dependency"
+---
 
-✅ What you'll see:
+## 📊 What This Demonstrates
 
-Dependencies count increases
-The dependency graph updates showing the connection
-Services count increases as new services are discovered
+* **Schema Evolution:** How APIs change over time (v1.0.0 → v1.1.0 → v2.0.0)
+* **Change Detection:** Automatic identification of breaking changes
+* **Safety Mechanism:** Preventing dangerous deployments
+* **Service Mesh:** Visual representation of service dependencies
+* **Deployment Pipeline:** Tracking schema deployments across environments
 
-📊 What This Demonstrates
+---
 
-Schema Evolution: How APIs change over time (v1.0.0 → v1.1.0 → v2.0.0)
-Change Detection: Automatic identification of breaking changes
-Safety Mechanism: Preventing dangerous deployments
-Service Mesh: Visual representation of service dependencies
-Deployment Pipeline: Tracking schema deployments across environments
+##  Real-World Value
 
-💡 Real-World Value
 This tool helps teams:
 
-Prevent Outages: Catch breaking changes before production
-Improve Communication: Visualize service dependencies
-Track Changes: Maintain schema history
-Coordinate Deployments: See what's deployed where
+* **Prevent Outages:** Catch breaking changes before production
+* **Improve Communication:** Visualize service dependencies
+* **Track Changes:** Maintain schema history
+* **Coordinate Deployments:** See what's deployed where
 
-🔮 Future Enhancements
-Support for GraphQL schemas
-Integration with CI/CD pipelines
+---
 
+##  Future Enhancements
+
+* Support for GraphQL schemas
+* Integration with CI/CD pipelines
